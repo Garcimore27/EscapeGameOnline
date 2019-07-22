@@ -290,12 +290,36 @@ public void ModeDuel(Config listeParametres) {
 	}*/
 
 public Integer choixFinPartie() {
-    System.out.println("Que souhaitez-vous faire maintenant ? \n" +
-            "1 - Relancer le même jeu ? \n" +
-            "2 - Revoir le choix de tous les jeux ? \n" +
-            "3 - Quitter l'application ? \n");
-    System.out.print("Votre choix ? 1 - 2 ou 3 : ");
-    return sc.nextInt();
+	boolean choixOK = false;
+	int retourChoix = 0;
+	do {
+        try {
+        	System.out.println("Que souhaitez-vous faire maintenant ? \n" +
+    	            "1 - Relancer le même jeu ? \n" +
+    	            "2 - Revoir le choix de tous les jeux ? \n" +
+    	            "3 - Quitter l'application ? \n");
+    	    System.out.print("Votre choix ? 1 - 2 ou 3 : ");
+        	retourChoix = sc.nextInt();
+        	if (retourChoix > 0 && retourChoix < 4) {
+        		choixOK = true;
+        	} else {
+                System.out.println("Le nombre saisi doit être compris entre 1 et 3. Recommencez !");
+                logger.error("Réponse inattendue dans le choix des menus ... l'entier saisi ne correspond à aucun jeu !");
+        		choixOK = false;
+        		retourChoix = 0;
+        	}
+       	
+        } catch (InputMismatchException e) {
+            sc.next();
+            System.out.println("Vous devez saisir un nombre entre 1 et 3 pour déclencher l'action correspondante !");
+            logger.error("Réponse inattendue dans le choix des menus (1 à 3) ... ce n'était pas un entier !");
+            choixOK = false;
+            retourChoix = 0;
+        }
+    } while (!choixOK);
+
+	return retourChoix;
+	
 	}
 }
 
