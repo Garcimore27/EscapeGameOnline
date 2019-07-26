@@ -28,10 +28,16 @@ public class Jeux {
 		
 		if (!choix && (numMemeJeu == 0 || numMemeJeu == 2)) {
             System.out.println("A quel jeu souhaitez-vous jouer ?");
+            int i = 0;
+            for (ChoixJeux detail: ChoixJeux.values()) {
+            	i++;
+            	System.out.println(i + " - " + detail.toString());
+            }
+            /*
             System.out.println("1 - Challenger : A vous de trouver le code détenu par la Machine");
             System.out.println("2 - Défenseur : La Machine cherche votre code");
             System.out.println("3 - Duel : le premier qui trouve le code de l'autre a gagné !");
-            
+            */
             while (!choix) {
             	boolean typeReponseOK;
                 do {
