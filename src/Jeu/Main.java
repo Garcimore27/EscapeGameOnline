@@ -8,7 +8,7 @@ public class Main {
 	static final Logger logger = LogManager.getLogger();
 	
 	public static void main(String[] args) {
-		//boolean rejouePartie = false; // prend la valeur "vrai" si on veut rejouer une partie
+		
 		int rejoueMemePartie = 0;
 		
 		Config param = new Config(); //charge la config du fichier contenant les propriétés du jeu (nb Essais, nb Chiffres ...)
