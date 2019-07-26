@@ -1,2 +1,7 @@
 
 *.log
+resources/all.log
+*.class
+*.log
+*.log
+*.log
