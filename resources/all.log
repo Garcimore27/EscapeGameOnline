@@ -4,3 +4,7 @@
 2019-07-26 09:54:24.188 [main] ERROR Jeu.Jeux - Réponse inattendue dans le choix des menus (1 à 3) ... ce n'était pas un entier !
 2019-07-26 10:15:40.229 [main] INFO  Jeu.Config - Les paramètres du fichier de configuration config.properties ont été chargés !
 2019-07-26 10:15:50.529 [main] INFO  Jeu.Jeux - Mode Challenger sélectionné !
+2019-07-26 10:51:20.050 [main] INFO  Jeu.Config - Les paramètres du fichier de configuration config.properties ont été chargés !
+2019-07-26 10:51:22.651 [main] INFO  Jeu.Jeux - Mode Challenger sélectionné !
+2019-07-26 11:44:29.847 [main] INFO  Jeu.Config - Les paramètres du fichier de configuration config.properties ont été chargés !
+2019-07-26 11:44:33.436 [main] INFO  Jeu.Jeux - Mode Challenger sélectionné !
