@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
  *
  */
 
-public class Jeux {
+public class Jeux implements Jouable{
 	static final Logger logger = LogManager.getLogger();
 	private String jeuChoisi = "non"; // contient "non" ou Challenger ou Défenseur ou Duel
 	private boolean choix = false; //si on a choisi un jeu, cette variable est vraie sinon elle est fausse
@@ -29,6 +29,7 @@ public class Jeux {
 		if (!choix && (numMemeJeu == 0 || numMemeJeu == 2)) {
             System.out.println("A quel jeu souhaitez-vous jouer ?");
             int i = 0;
+            //Liste des énumérations de ChoixJeux
             for (ChoixJeux detail: ChoixJeux.values()) {
             	i++;
             	System.out.println(i + " - " + detail.toString());
@@ -43,17 +44,17 @@ public class Jeux {
                 do {
                     try {
                     	choixMode = sc.nextInt();
-                    	if (choixMode > 0 && choixMode < 4) {
+                    	if (choixMode > 0 && choixMode <= ChoixJeux.values().length) {
                     		typeReponseOK = true;
                     	} else {
-                            System.out.println("Le nombre saisi doit être compris entre 1 et 3. Recommencez !");
+                            System.out.println("Le nombre saisi doit être compris entre 1 et "+ ChoixJeux.values().length + ". Recommencez !");
                             logger.error("Réponse inattendue dans le choix des jeux ... l'entier saisi ne correspond à aucun jeu !");
                     		typeReponseOK = false;
                     	}
                    	
                     } catch (InputMismatchException e) {
                         sc.next();
-                        System.out.println("Vous devez saisir un nombre entre 1 et 3 pour déclencher le jeu correspondant !");
+                        System.out.println("Vous devez saisir un nombre entre 1 et "+ ChoixJeux.values().length + " pour déclencher le jeu correspondant !");
                         logger.error("Réponse inattendue dans le choix des jeux ... ce n'est pas un entier !");
                         typeReponseOK = false;
                     }
@@ -63,17 +64,17 @@ public class Jeux {
 
                 switch (choixMode) {
                     case 1:
-                        this.jeuChoisi = "Challenger";
+                        this.jeuChoisi = ChoixJeux.Challenger.getNom();
                         choix = true;
                         break;
 
                     case 2:
-                        this.jeuChoisi = "Défenseur";
+                        this.jeuChoisi = ChoixJeux.Defenseur.getNom();
                         choix = true;
                         break;
 
                     case 3:
-                        this.jeuChoisi = "Duel";
+                        this.jeuChoisi = ChoixJeux.Duel.getNom();
                         choix = true;
                         break;
 
@@ -109,7 +110,7 @@ public class Jeux {
 	
 	public void ModeChallenger(Config listeParametres) {
 		String indices = ""; // contient les +, - ou = ... indices donnés par la machine
-		String prop = ""; // Contient la proposition d'une combinaison calculée par le programme 
+		String prop = ""; // Contient la proposition d'une combinaison 
 		boolean perdu = false;
 		String aTrouver = "";
 		
