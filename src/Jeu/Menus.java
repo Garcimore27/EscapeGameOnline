@@ -297,7 +297,7 @@ public boolean rejouer(){
     	}
 	}*/
 
-public Integer choixFinPartie() {
+	public Integer choixFinPartie() {
 	boolean choixOK = false;
 	int retourChoix = 0;
 	do {
