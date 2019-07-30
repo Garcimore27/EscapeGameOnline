@@ -6,6 +6,7 @@ public class Joueur {
 	
 	Combinaison creeCombi;
 	boolean gagne = false;
+	//String regex = "\\d+";
 	
 	
 	public Joueur(int nbChiffres){
@@ -19,30 +20,18 @@ public class Joueur {
 	 */
 	
 	public String Compare(String proposition) {
+		String propModifiee = ""; //proposition corrigée par la gestion des erreurs
 		String reponse = "";
 		int chiffresOK = 0;
 		gagne = false;
-		if (proposition.length() != this.creeCombi.getGenereCombi().size()) {
-			System.out.println("Désolé, la longueur proposée n'est pas la bonne, ceci est compté comme un essai quand même ");
-		}
-		// Si la proposition est trop longue, on ne prend que les X premiers car. correspondant à la taille de la combinaison à trouver
-		if (proposition.length() > this.creeCombi.getGenereCombi().size()) {
-			proposition = proposition.substring(0,this.creeCombi.getGenereCombi().size());
-			System.out.println("Seuls les " + this.creeCombi.getGenereCombi().size() + " premiers chiffres de votre proposition sont pris en compte ! (" + proposition + ")");
-		}
+		VerificationErreurs vErreurs = new VerificationErreurs();
+		propModifiee = vErreurs.VerifChiffres(proposition, this.creeCombi); //Verification des chiffres
 		
-		// Si la proposition n'est pas assez longue, on la comble avec des zéros devant !
-		if (proposition.length() < this.creeCombi.getGenereCombi().size()) {
-			for (int i = 0; i < this.creeCombi.getGenereCombi().size() - proposition.length() + 1; i++) {
-				proposition = "0" + proposition;
-			}
-			System.out.println("Votre proposition a été modifiée en ceci : " + proposition + " pour être évaluée correctement !");
-		}
 		for (int i =0; i < this.creeCombi.getGenereCombi().size(); i++) {
-			if(this.creeCombi.getGenereCombi().get(i) > Character.getNumericValue(proposition.charAt(i))) {
+			if(this.creeCombi.getGenereCombi().get(i) > Character.getNumericValue(propModifiee.charAt(i))) {
 				reponse+= "+";
 			}else
-				if(this.creeCombi.getGenereCombi().get(i) < Character.getNumericValue(proposition.charAt(i))) {
+				if(this.creeCombi.getGenereCombi().get(i) < Character.getNumericValue(propModifiee.charAt(i))) {
 					reponse += "-";
 				} else {
 					reponse+= "=";
