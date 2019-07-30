@@ -65,7 +65,7 @@ public class JouerMode implements Jouable{
 	public void ModeDefenseur(Config listeParametres) {
 		String indices = ""; // contient les +, - ou = ... indices donnés par le joueur
 		String prop = ""; // Contient la proposition d'une combinaison calculée par le programme 
-				
+		VerificationErreurs vErreurs = new VerificationErreurs();
 		Joueur homme = new Joueur(listeParametres.getNbChiffres());
 		
 		do {
@@ -74,17 +74,19 @@ public class JouerMode implements Jouable{
 			for (int i=0; i < homme.creeCombi.getPropositionCombi().size(); i++) {
 				prop += homme.creeCombi.getPropositionCombi().get(i).toString();
 			}
-			if (nbCoups ==1) {
-				System.out.println("Merci d'indiquer des +, des - ou des = lorsque chacun des chiffres à deviner est plus grand, moins grand ou égal à ceux qui sont proposés !");
-				System.out.print(nbCoups + "ère Proposition : ");
-			}else {
-				System.out.print(nbCoups + "ème Proposition : ");
-			}
-		
-			System.out.println(homme.creeCombi.getPropositionCombi());
+			do {
+				if (nbCoups ==1) {
+					System.out.println("Merci d'indiquer des +, des - ou des = lorsque chacun des chiffres à deviner est plus grand, moins grand ou égal à ceux qui sont proposés !");
+					System.out.print(nbCoups + "ère Proposition : ");
+				}else {
+					System.out.print(nbCoups + "ème Proposition : ");
+				}
 			
-			indices = sc.nextLine();
-			
+				System.out.println(homme.creeCombi.getPropositionCombi());
+				
+				indices = sc.nextLine();
+			} while (!vErreurs.estCeQueSignesOK(indices));
+	
 		} while (!(homme.nouvelleCombinaison(indices, homme.creeCombi.getPropositionCombi())) && (nbCoups < listeParametres.getNbEssais()));
 		
 		if(homme.nouvelleCombinaison(indices, homme.creeCombi.getPropositionCombi())) {
