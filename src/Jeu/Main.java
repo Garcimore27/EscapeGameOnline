@@ -16,7 +16,7 @@ public class Main {
 		
 		do {
 		//Jeux jeu = new Jeux(param); // lance le choix des menus et lance le jeu sélectionné
-		Jeux jeu = new Jeux(param, rejoueMemePartie); // lance le choix des menus et lance le jeu sélectionné
+		Menus jeu = new Menus(param, rejoueMemePartie); // lance le choix des menus
 		rejoueMemePartie = jeu.choixFinPartie();
 		
 		//rejouePartie = jeu.rejouer(); // demande si on rejoue

@@ -7,12 +7,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * La classe Jeux définit les 3 modes de jeux (Challenger, Défenseur et Duel) et une méthode pour demander à rejouer 
+ * La classe Menus définit lance les différents menus et une méthode pour demander à rejouer 
  * @author agarnij
  *
  */
 
-public class Jeux {
+public class Menus {
 	static final Logger logger = LogManager.getLogger();
 	private String jeuChoisi = "non"; // contient "non" si pas encore de choix ou Challenger ou Défenseur ou Duel
 	private boolean choix = false; //si on a choisi un jeu, cette variable est vraie sinon elle est fausse
@@ -24,7 +24,7 @@ public class Jeux {
 	 * Affiche les menus et intercepte les choix de l'utilisateur
 	 * @param parametres
 	 */
-	public Jeux(Config parametres, int numMemeJeu) {
+	public Menus(Config parametres, int numMemeJeu) {
 		
 		if (!choix && (numMemeJeu == 0 || numMemeJeu == 2)) {
             System.out.println("A quel jeu souhaitez-vous jouer ?");
@@ -108,7 +108,7 @@ public class Jeux {
 		
 	}
 	
-	/*
+	/* Méthodes de Jeux déplacées dans JouerMode pour séparer Menus et Jeux
 	public void ModeChallenger(Config listeParametres) {
 		String indices = ""; // contient les +, - ou = ... indices donnés par la machine
 		String prop = ""; // Contient la proposition d'une combinaison 
