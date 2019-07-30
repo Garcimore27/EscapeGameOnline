@@ -12,12 +12,12 @@ import org.apache.logging.log4j.Logger;
  *
  */
 
-public class Jeux implements Jouable{
+public class Jeux {
 	static final Logger logger = LogManager.getLogger();
-	private String jeuChoisi = "non"; // contient "non" ou Challenger ou Défenseur ou Duel
+	private String jeuChoisi = "non"; // contient "non" si pas encore de choix ou Challenger ou Défenseur ou Duel
 	private boolean choix = false; //si on a choisi un jeu, cette variable est vraie sinon elle est fausse
 	protected Scanner sc = new Scanner(System.in); // lecture des entrées au clavier
-	private int nbCoups = 0; // Contient le nombre de propositions effectuées
+	//private int nbCoups = 0; // Contient le nombre de propositions effectuées ... déplacé dans la classe JouerMode
 	static int choixMode = -1; // Contient le n° du jeu choisi et conserve ce choix pour la prochaine instance si le joueur souhaite rejouer au même jeu
 	
 	/**
@@ -88,26 +88,27 @@ public class Jeux implements Jouable{
             
           
         }
-		
-		lancementJeu(parametres, choixMode);
+		JouerMode quelMode = new JouerMode();
+		lancementJeu(parametres, choixMode, quelMode);
          	
  	}
 	
-	public void lancementJeu(Config para, int jeuChoix) {
+	public void lancementJeu(Config para, int jeuChoix, JouerMode quelMode) {
 		switch(jeuChoix) {
 		case 1:
-			ModeChallenger(para);
+			quelMode.ModeChallenger(para);
 			break;
 		case 2:
-			ModeDefenseur(para);
+			quelMode.ModeDefenseur(para);
 			break;
 		case 3:
-			ModeDuel(para);
+			quelMode.ModeDuel(para);
 			break;
 		}
 		
 	}
 	
+	/*
 	public void ModeChallenger(Config listeParametres) {
 		String indices = ""; // contient les +, - ou = ... indices donnés par la machine
 		String prop = ""; // Contient la proposition d'une combinaison 
@@ -279,7 +280,7 @@ public void ModeDuel(Config listeParametres) {
 }
 
 // Ancienne méthode pour rejouer mais ne prend pas en compte le fait de rejouer le même jeu.
-/*public boolean rejouer(){
+public boolean rejouer(){
     while (true){
         System.out.println("Souhaitez-vous rejouer ? - O / N ");
         String choixRejouer = sc.nextLine();
