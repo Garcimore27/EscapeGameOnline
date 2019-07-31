@@ -67,6 +67,7 @@ public class JouerMode implements Jouable{
 		String prop = ""; // Contient la proposition d'une combinaison calculée par le programme 
 		VerificationErreurs vErreurs = new VerificationErreurs();
 		Joueur homme = new Joueur(listeParametres.getNbChiffres());
+		int cpteMauvaiseProposition;
 		
 		do {
 			nbCoups ++;
@@ -74,7 +75,12 @@ public class JouerMode implements Jouable{
 			for (int i=0; i < homme.creeCombi.getPropositionCombi().size(); i++) {
 				prop += homme.creeCombi.getPropositionCombi().get(i).toString();
 			}
+			cpteMauvaiseProposition = -1;
 			do {
+				cpteMauvaiseProposition +=1;
+				if (cpteMauvaiseProposition>0) {
+					System.out.println("Recommencez, la proposition est erronée !");
+				}
 				if (nbCoups ==1) {
 					System.out.println("Merci d'indiquer des +, des - ou des = lorsque chacun des chiffres à deviner est plus grand, moins grand ou égal à ceux qui sont proposés !");
 					System.out.print(nbCoups + "ère Proposition : ");
@@ -85,6 +91,7 @@ public class JouerMode implements Jouable{
 				System.out.println(homme.creeCombi.getPropositionCombi());
 				
 				indices = sc.nextLine();
+				
 			} while (!vErreurs.estCeQueSignesOK(indices, prop));
 	
 		} while (!(homme.nouvelleCombinaison(indices, homme.creeCombi.getPropositionCombi())) && (nbCoups < listeParametres.getNbEssais()));
