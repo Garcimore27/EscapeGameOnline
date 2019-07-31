@@ -85,7 +85,7 @@ public class JouerMode implements Jouable{
 				System.out.println(homme.creeCombi.getPropositionCombi());
 				
 				indices = sc.nextLine();
-			} while (!vErreurs.estCeQueSignesOK(indices));
+			} while (!vErreurs.estCeQueSignesOK(indices, prop));
 	
 		} while (!(homme.nouvelleCombinaison(indices, homme.creeCombi.getPropositionCombi())) && (nbCoups < listeParametres.getNbEssais()));
 		

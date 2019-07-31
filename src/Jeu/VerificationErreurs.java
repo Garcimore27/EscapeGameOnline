@@ -65,11 +65,11 @@ public class VerificationErreurs {
 	}
 	
 	//Méthode permettant de vérifier que la saisie ne contient que des signes
-    public boolean estCeQueSignesOK(String saisie) {
+    public boolean estCeQueSignesOK(String saisie, String prop) {
         boolean signesOK = true;
         char[] signesSaisie = saisie.toCharArray();
 
-        if (saisie.length() != 4) {
+        if (saisie.length() != prop.length()) {
             signesOK = false;
         }
 
