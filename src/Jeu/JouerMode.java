@@ -58,6 +58,7 @@ public class JouerMode implements Jouable{
 			System.out.println("Vous avez perdu, il fallait trouver la combinaison : " + aTrouver);
 		}else {
 			System.out.println("Bravo, vous avez trouvé la bonne combinaison en " + nbCoups + " essai(s) !");
+			logger.info("Combinaison trouvée en " + nbCoups + " essai(s) !");
 		}
 		
 	}
@@ -114,7 +115,10 @@ public class JouerMode implements Jouable{
 		
 		String indicesHomme = ""; // contient les +, - ou = ... indices donnés par le joueur
 		String propMachine = ""; // Contient la proposition d'une combinaison calculée par le programme 
-				
+		
+		VerificationErreurs vErreurs = new VerificationErreurs();
+		int cpteMauvaiseProposition = -1;
+		
 		System.out.println("Mode Duel activé - Chacun d'entre nous, alternativement, doit tenter de trouver la combinaison de l'autre !");
 		System.out.println("Celui qui la trouve le plus vite a gagné !");
 		
@@ -137,10 +141,16 @@ public class JouerMode implements Jouable{
 		while (!machine.gagne && !perdu && !homme.gagne) {
 			//propMachine = "";
 			// Idem mode Challenger
-			System.out.println("Proposition de " + nbSize + " chiffres : ");
+			nbCoups ++;
+			if (nbCoups == 1) {
+				System.out.println("Votre " + nbCoups + "ère Proposition de " + nbSize + " chiffres : ");
+			}else {
+				System.out.println("Votre " + nbCoups + "ème Proposition de " + nbSize + " chiffres : ");
+			}
+			//System.out.println("Proposition de " + nbSize + " chiffres : ");
 			prop = sc.nextLine();
 			
-			nbCoups ++;
+			
 			indices = machine.Compare(prop);
 			
 			if (nbCoups == 1) {
@@ -167,14 +177,25 @@ public class JouerMode implements Jouable{
 				propMachine += homme.creeCombi.getPropositionCombi().get(i).toString();
 			}
 			if (nbCoups ==1) {
-				System.out.println("Merci d'indiquer des +, des - ou des = lorsque chacun des chiffres à deviner est plus grand, moins grand ou égal à ceux qui sont proposés !");
-				System.out.print("Mode Défenseur - " + nbCoups + "ère Proposition : ");
+				System.out.println("Merci d'indiquer des +, des - ou des = \n" + 
+									"lorsque chacun des chiffres à deviner est plus grand, \n" + 
+									"moins grand ou égal à ceux qui sont proposés !");
+				System.out.print("Ma " + nbCoups + "ère proposition pour deviner votre combinaison est : ");
 			}else {
-				System.out.print("Mode Défenseur - " + nbCoups + "ème Proposition : ");
+				System.out.print("Ma " + nbCoups + "ème proposition pour deviner votre combinaison est : ");
 			}
 			System.out.println(propMachine);//homme.creeCombi.propositionCombi
+			cpteMauvaiseProposition = -1;
+			do {
+				cpteMauvaiseProposition ++;
+				if(cpteMauvaiseProposition > 0) {
+					System.out.println("Recommencez, la proposition est erronée !");					
+				}
+				indicesHomme = sc.nextLine();
+				
+			} while (!vErreurs.estCeQueSignesOK(indicesHomme, propMachine));
 			
-			indicesHomme = sc.nextLine();
+			System.out.println("Proposition correcte !");
 			
 			if (nbCoups == listeParametres.getNbEssais() && !homme.gagne) {
 				perdu = true;
