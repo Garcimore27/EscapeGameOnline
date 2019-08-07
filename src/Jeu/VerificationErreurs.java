@@ -64,7 +64,7 @@ public class VerificationErreurs {
 		return proposition;
 	}
 	
-	//Méthode permettant de vérifier que la saisie ne contient que des signes
+	//Méthode permettant de vérifier que la saisie ne contient que des signes ... renvoie vrai si tous les signes ok sinon faux
     public boolean estCeQueSignesOK(String saisie, String prop) {
         boolean signesOK = true;
         char[] signesSaisie = saisie.toCharArray();
