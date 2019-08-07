@@ -23,5 +23,6 @@ public class Main {
 		} while(rejoueMemePartie != 3); // relance le même jeu ou les menus de choix de jeu tant que l'on souhaite jouer
 		
 		System.out.println("Merci d'avoir joué ! - Au plaisir de vous revoir !");
+		logger.info("Fin des Jeux");
 	}
 }
