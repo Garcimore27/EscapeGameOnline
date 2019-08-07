@@ -177,10 +177,12 @@ public class JouerMode implements Jouable{
 				propMachine += homme.creeCombi.getPropositionCombi().get(i).toString();
 			}
 			if (nbCoups ==1) {
-				System.out.println("Merci d'indiquer des +, des - ou des = lorsque chacun des chiffres à deviner est plus grand, moins grand ou égal à ceux qui sont proposés !");
-				System.out.print("Ma " + nbCoups + "ère proposition pour deviner votre combinaison : ");
+				System.out.println("Merci d'indiquer des +, des - ou des = \n" + 
+									"lorsque chacun des chiffres à deviner est plus grand, \n" + 
+									"moins grand ou égal à ceux qui sont proposés !");
+				System.out.print("Ma " + nbCoups + "ère proposition pour deviner votre combinaison est : ");
 			}else {
-				System.out.print("Ma " + nbCoups + "ème proposition pour deviner votre combinaison : ");
+				System.out.print("Ma " + nbCoups + "ème proposition pour deviner votre combinaison est : ");
 			}
 			System.out.println(propMachine);//homme.creeCombi.propositionCombi
 			cpteMauvaiseProposition = -1;
