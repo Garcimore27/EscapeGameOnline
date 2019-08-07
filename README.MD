@@ -11,3 +11,6 @@ Les modes de jeu :
 - Challenger : vous devez deviner le code détenu par la machine.
 - Défenseur : L'ordinateur tente de deviner votre code.
 - Duel : Le premier qui trouve le code de l'autre a gagné.
+
+Le mode développeur permettant de voir la combinaison de la machine, ainsi que le nombre d'essais et le nombre de chiffres à découvrir sont définis dans le fichier Config.properties du sous-dossier resources.
+BON JEU !
